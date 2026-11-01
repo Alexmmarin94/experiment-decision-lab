@@ -1,6 +1,6 @@
 # Experiment Decision Intelligence
 
-**From experiment results to decisions you can defend, using AI.**
+**From experiment results to decisions you can defend, with AI-enhanced reasoning.**
 
 Expert-designed evidence establishes what an experiment supports. Decision modeling translates uncertainty into business consequences. AI makes those verified results easier to interpret, challenge and explore through controlled tools; an accountable human owns the decision.
 
