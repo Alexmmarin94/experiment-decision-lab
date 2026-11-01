@@ -70,46 +70,37 @@ experiment-decision-lab/
 
 [Open the live walkthrough](https://experiment-decision-lab-cbbwca5t7qwg6kjsne8izj.streamlit.app/) and select **Start the example walkthrough**. All examples use synthetic data and hypothetical business assumptions.
 
-Expand a stage for a visual guide. Screenshots show illustrative states of the synthetic example; results depend on the selected inputs, assumptions and model.
+The screenshots below follow the six stages. They show illustrative states of the synthetic example; results depend on the selected inputs, assumptions and model.
 
-<details>
-<summary><strong>01 · Start with the example or your own CSV</strong> — view screenshot</summary>
+#### 01 · Start with the example or your own CSV
 
 Choose the synthetic experiment or upload your own data, review the input and confirm the study design before running analysis. AI assistance is optional.
 
 ![Welcome screen with example and CSV options, walkthrough button and optional AI assistance](docs/screenshots/01-start.png)
 
-</details>
 
-<details>
-<summary><strong>02 · Check whether the evidence is ready</strong> — view screenshot</summary>
+#### 02 · Check whether the evidence is ready
 
 Inspect passed checks, warnings, blocks and missing evidence before interpreting an effect. A blue card means evidence was not supplied; it does not establish a logging defect.
 
 ![Experiment quality screen showing 26 passed checks, no blocks and two concerns or unavailable checks](docs/screenshots/02-trust.png)
 
-</details>
 
-<details>
-<summary><strong>03 · Understand the result and its uncertainty</strong> — view screenshot</summary>
+#### 03 · Understand the result and its uncertainty
 
 Read the observed effect alongside the conventional test and Bayesian probabilities. Here, the positive estimate does not meet the conventional 5% significance threshold; the probabilities remain conditional on the selected model and prior. Safety, subgroup and timing views provide separate checks.
 
 ![Overall outcome showing positive relative improvement, model-conditioned benefit probabilities and an inconclusive conventional test](docs/screenshots/03-outcome.png)
 
-</details>
 
-<details>
-<summary><strong>04 · Translate uncertainty into business consequences</strong> — view screenshot</summary>
+#### 04 · Translate uncertainty into business consequences
 
 Declare the business assumptions, then compare simulated gains and losses after costs. These are hypothetical financial outcomes, not observed revenue. Sensitivity and value-of-information views help identify what to validate next.
 
 ![Monte Carlo distribution of possible launch value with modeled gains and losses around break-even](docs/screenshots/04-launch-value.png)
 
-</details>
 
-<details>
-<summary><strong>05 · Challenge the decision with AI</strong> — view screenshot</summary>
+#### 05 · Challenge the decision with AI
 
 Request a Strategic Review grounded in computed experiment results and the active business scenario. Add company context or ask a calculated what-if question; proposed business changes require confirmation before they take effect.
 
@@ -119,16 +110,13 @@ Example questions connect interpretation, business constraints and controlled sc
 
 ![Suggested AI questions and conversation controls](docs/screenshots/05-ai-questions.png)
 
-</details>
 
-<details>
-<summary><strong>06 · Record a decision you can revisit</strong> — view screenshot</summary>
+#### 06 · Record a decision you can revisit
 
 Bring the result, uncertainty, safety checks and modeled economics into a readable Decision Brief. Add the accountable owner’s judgment and export a copy with the conditions behind the choice.
 
 ![Decision Brief showing the choice, its rationale and the evidence that matters](docs/screenshots/06-decision-brief.png)
 
-</details>
 
 **Reading the example:** a positive estimate can coexist with an inconclusive conventional test; a model-conditioned probability of benefit is not a probability of financial success. Guardrails, corrected subgroup comparisons and modeled economics answer different questions.
 
