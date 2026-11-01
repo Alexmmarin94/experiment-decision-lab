@@ -1,10 +1,16 @@
 # Experiment Decision Intelligence
 
-**From experiment results to decisions you can defend.**
+**From experiment results to decisions you can defend, using AI.**
 
 Expert-designed evidence establishes what an experiment supports. Decision modeling translates uncertainty into business consequences. AI makes those verified results easier to interpret, challenge and explore through controlled tools; an accountable human owns the decision.
 
 The promise is **better reasoning under uncertainty**, not automatic product decisions. The demo illustrates analytical judgment, not production impact. Everything in the interface and exports is in English.
+
+## Live demo
+
+**[Explore Experiment Decision Intelligence →](https://experiment-decision-lab-cbbwca5t7qwg6kjsne8izj.streamlit.app/)**
+
+Start with the synthetic experiment to explore the full workflow, or analyze your own CSV. The demo may need a moment to wake up after inactivity.
 
 ## Quick start
 
@@ -19,41 +25,33 @@ pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
 
-On Windows, activate with `.venv\Scripts\activate`. For local AI features, copy `.streamlit/secrets.toml.example` to `.streamlit/secrets.toml` and enter your OpenRouter key in that private file. It is ignored by Git.
-
-## Deploy on Streamlit Community Cloud
-
-1. Sign in at [Streamlit Community Cloud](https://share.streamlit.io/) with GitHub and choose **Create app**.
-2. Select repository `Alexmmarin94/experiment-decision-lab`, branch `main`, and main file `streamlit_app.py`.
-3. In **Advanced settings**, choose Python **3.12** and enter the following TOML in **Secrets**, replacing only the key placeholder:
-
-```toml
-OPENROUTER_API_KEY = "YOUR_OPENROUTER_API_KEY"
-OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-LLM_MODEL = "google/gemini-2.5-flash"
-```
-
-4. Choose **Deploy**. For an existing app, update these values under **App settings → Secrets**, then save/reboot as prompted.
-5. Start the example walkthrough to validate the statistical workflow. Request an AI strategic review to validate your key, credits and model access; this sends a paid provider request.
-
-Use an **OpenRouter** API key, rather than a direct OpenAI or Google key. The model can be changed to another OpenRouter model supporting tool calling. GitHub Actions secrets are separate and are not automatically supplied to Streamlit. No key belongs in a commit or in the public example file.
-
-**Hosting limits:** decision versions use local SQLite and can disappear when a cloud instance is replaced. Export important decisions. This app does not provide per-user authentication or user-isolated durable storage; saved history on a shared instance is not a private account vault. Use the synthetic example for public demos.
-
-A live demo URL will be available after the app is created in Streamlit Cloud.
+On Windows, activate with `.venv\Scripts\activate`. To explore the AI capabilities directly, use the [live demo](https://experiment-decision-lab-cbbwca5t7qwg6kjsne8izj.streamlit.app/).
 
 ## Repository structure
 
 ```text
-streamlit_app.py                 Streamlit interface and six-stage workflow
-edi/                            Statistical inference, decision models, AI and reporting
-data/experiment_users.csv       Synthetic example with 40,000 users
-tests/                          Unit and Streamlit workflow tests
-scripts/generate_examples.py    Reproducible synthetic dataset generator
-.streamlit/config.toml          Theme and upload configuration
-.streamlit/secrets.toml.example  Placeholder-only local/cloud secret template
-.github/workflows/tests.yml     Python 3.12 validation on pushes and pull requests
-requirements.txt                Runtime dependencies
+experiment-decision-lab/
+├── streamlit_app.py             # App entry point and six-stage interface
+├── edi/                         # Core analysis and decision intelligence
+│   ├── quality.py               # Experiment and data-quality checks
+│   ├── inference.py             # Effect estimates and uncertainty
+│   ├── hierarchy.py             # Partial pooling across groups
+│   ├── scenarios.py             # Business simulations and alternatives
+│   ├── decision_policy.py       # Feasibility and decision rules
+│   ├── copilot.py               # AI review and controlled tool calls
+│   ├── reporting.py             # Decision briefs, exports and history
+│   └── …                        # Onboarding, explanations and UI helpers
+├── data/
+│   └── experiment_users.csv     # 40,000 fictional users
+├── tests/                       # Statistical and Streamlit workflow tests
+├── scripts/
+│   └── generate_examples.py     # Reproducible synthetic data
+├── .streamlit/
+│   └── config.toml              # Theme and upload settings
+├── .github/workflows/
+│   └── tests.yml                # Automated validation
+├── requirements.txt             # Python dependencies
+└── README.md
 ```
 
 ## Six steps, one experiment
@@ -66,6 +64,23 @@ requirements.txt                Runtime dependencies
 | 04 · What should we do? | Ready-to-run starting assumptions with sources, alternative budgets, Monte Carlo, downside, thresholds, sensitivity and a shared-policy EVSI. |
 | 05 · Explore with AI | Explicitly requested initial reading, question shortcuts, company context, read-only comparisons and confirmed business changes. |
 | 06 · Decision brief | A usable decision document, local saved versions, assumption/decision comparisons and auditable exports. |
+
+### Follow the workflow in the demo
+
+[Open the live walkthrough](https://experiment-decision-lab-cbbwca5t7qwg6kjsne8izj.streamlit.app/) and select **Start the example walkthrough**. All examples use synthetic data and hypothetical business assumptions.
+
+| Stage | What to look for | What it helps you decide |
+| --- | --- | --- |
+| **01 · Start** | Choose the example or upload a CSV; review the input and confirm the design. | Whether the data and study design fit the supported workflow. |
+| **02 · Trust** | Green checks, amber warnings, red blocks and blue missing-evidence cards. | What must be investigated before interpreting the result. |
+| **03 · Learn** | Overall outcome → safety → differences across users → weeks and future population. | What was observed, what remains uncertain and which claims the evidence supports. |
+| **04 · Decide** | Business assumptions → simulated value and loss → sensitivity → value of more data. | Whether a feasible action is worthwhile under the declared assumptions. |
+| **05 · Explore with AI** | Request a Strategic Review, add company context and ask calculated what-if questions. | Which assumptions matter most and what could change the choice. |
+| **06 · Record** | Review the Decision Brief, add the owner's judgment and export it. | How to preserve a decision with its evidence, conditions and next steps. |
+
+**Reading the example:** a positive estimate can coexist with an inconclusive conventional test; a model-conditioned probability of benefit is not a probability of financial success. Guardrails, corrected subgroup comparisons and modeled economics answer different questions.
+
+**Keep a copy:** export important decision briefs. Local history on the hosted demo is not durable storage or a private account vault.
 
 The distinction from a one-off CSV conversation is a reusable evidence and decision contract: explicit methods, preserved statistical limits, validated business tools, confirmation, deterministic recalculation and version history. A general model can analyze a CSV; it does not automatically provide this workflow or organizational context.
 
@@ -198,16 +213,6 @@ Finite inner simulation can bias the maximization upward. The UI exports outer S
 
 ## AI: explanations, Strategic Review and controlled scenarios
 
-Configure `.streamlit/secrets.toml` (ignored by Git):
-
-```toml
-OPENROUTER_API_KEY = "your-api-key"
-OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-LLM_MODEL = "google/gemini-2.5-flash"
-```
-
-Quotes are correct. `.example` is a shareable placeholder, not the private configuration. Restart Streamlit after editing secrets. Environment variables are also supported.
-
 AI assistance is selected by default in Welcome and can be turned off. Starting the dataset unlocks the analysis; it does not itself send an AI request. Enabling it, opening a tab or changing assumptions makes **no automatic provider request**. Request check explanations, request a Strategic Review, click a question shortcut or send a chat message when you want AI. Those actions can incur provider charges; tool loops can require several requests. Deterministic summaries and the complete evidence/decision/report workflow remain usable without AI. Requests that fail do not block calculations.
 
 Click **Get an AI strategic review** to obtain a first AI reading without filling in any extra fields. Company context is in a collapsed optional section. Click **Save context** to use the notes in later questions/reports, or **Get an AI strategic review** to submit fresh text and generate the review together. Both buttons submit the same form: there is no need to press Enter or save separately before generation. Enter adds a new line. Save alone makes no provider request. The submitted notes are processed before generation and personalize the review. The review identifies the real decision tension, prioritizes binding constraints over economic sensitivities, challenges material assumptions, uses computed counterfactuals, and suggests a next action. It is distinct from the final Decision Brief, which records evidence, conditions and owner judgment. The first review is read-only and cannot prepare a pending assumption update. Its instructions require a Months of impact driver, and the UI also displays the deterministic month comparison with the review, even if the provider omits it. No reliable change or an eligibility block is stated explicitly; a longer financial period is not treated as observed follow-up or proof of durability. Concrete follow-up requests can prepare proposals. No company finance or engineering facts are inferred from user counts.
@@ -265,9 +270,3 @@ Presentation helpers in `presentation.py` and contextual input guidance in `inpu
 `proposal_ui.py` owns business-unit proposal presentation; it does not mutate or confirm scenarios. Active calculation modules: `quality.py`, `inference.py`, `hierarchy.py`, `decision_policy.py`, `scenarios.py`, `tools.py`, `copilot.py`, `reporting.py`. Streamlit coordinates presentation/state while calculation and policy remain callable without UI or LLM.
 
 Not implemented: CUPED, cluster/sequential estimators, exact generative heavy-tail/ratio hierarchies, a general daily-panel model, automatic data repair, arbitrary transport correction, iteration-effect forecasts or production impact validation.
-
-Deployment uses the source, dependencies, synthetic CSV and placeholder-only secret template. Private secrets, virtual environments and local decision history are excluded from Git.
-
-Method references: [Stan on hierarchical partial pooling](https://mc-stan.org/docs/stan-users-guide/regression.html), [OpenRouter tool calling](https://openrouter.ai/blog/tutorials/tool-calling/), [value-of-information methods](https://www.valueinhealthjournal.com/article/S1098-3015%2820%2930036-X/fulltext), [SciPy Welch test](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html).
-
-OpenRouter error semantics: [official error reference](https://github.com/OpenRouterTeam/docs/blob/main/api_reference/errors-and-debugging.mdx). Statistical algorithms and the synthetic example data are unchanged by this UX revision.
