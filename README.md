@@ -78,13 +78,11 @@ Choose the synthetic experiment or upload your own data, review the input and co
 
 ![Welcome screen with example and CSV options, walkthrough button and optional AI assistance](docs/screenshots/01-start.png)
 
-
 #### 02 · Check whether the evidence is ready
 
 Inspect passed checks, warnings, blocks and missing evidence before interpreting an effect. A blue card means evidence was not supplied; it does not establish a logging defect.
 
 ![Experiment quality screen showing 26 passed checks, no blocks and two concerns or unavailable checks](docs/screenshots/02-trust.png)
-
 
 #### 03 · Understand the result and its uncertainty
 
@@ -92,13 +90,39 @@ Read the observed effect alongside the conventional test and Bayesian probabilit
 
 ![Overall outcome showing positive relative improvement, model-conditioned benefit probabilities and an inconclusive conventional test](docs/screenshots/03-outcome.png)
 
+**Compare segments without declaring a winner too early.** First, compare the effect estimates and their uncertainty across baseline groups. The blue intervals below are individual 95% confidence intervals; they have not been corrected for searching across multiple groups.
+
+![Segment effect estimates and individual confidence intervals across platform, country and customer type](docs/screenshots/03-segment-estimates.png)
+
+**Check whether an apparent winner survives the full search.** The next view applies Holm correction across all nine subgroup comparisons, including those outside the selected platform attribute. In this example, none passes the corrected test. That means the evidence remains uncertain, not that the effects are zero.
+
+![Platform subgroup table distinguishing individual p-values from Holm-corrected evidence across all nine groups](docs/screenshots/03-segment-correction.png)
+
+**Ask separately whether effects differ between groups.** A result detected in one group and not another does not establish a difference between them. The heterogeneity view addresses that separate question; here it does not clearly establish different effects.
+
+![Separate heterogeneity comparison and corrected subgroup evidence with explicit interpretation limits](docs/screenshots/03-segment-heterogeneity.png)
+
+**Use partial pooling to put noisy estimates in context.** Hollow points use each group alone; teal points share information across related groups. This additional model complements the testing corrections and does not add new observations.
+
+![Platform estimates before and after hierarchical partial pooling with model-conditioned credible ranges](docs/screenshots/03-segment-pooling.png)
 
 #### 04 · Translate uncertainty into business consequences
 
-Declare the business assumptions, then compare simulated gains and losses after costs. These are hypothetical financial outcomes, not observed revenue. Sensitivity and value-of-information views help identify what to validate next.
+**Start with the business assumptions.** Enter the eligible audience, affected share, contribution per extra outcome, launch and maintenance costs, comparison period and downside preference. These inputs connect the estimated experiment effect to a hypothetical business case. The comparison period is not the experiment's duration or proof of lasting benefit.
+
+![Business scenario inputs for audience, coverage, margin, budgets, maintenance, months of impact and downside preference](docs/screenshots/04-business-inputs.png)
+
+**Then inspect the range of possible outcomes.** The simulation combines effect uncertainty with the declared business assumptions. Teal outcomes gain value after modeled costs; orange outcomes lose value. These are hypothetical financial outcomes, not observed revenue, and a positive expected value does not remove downside risk.
 
 ![Monte Carlo distribution of possible launch value with modeled gains and losses around break-even](docs/screenshots/04-launch-value.png)
 
+**Identify which assumptions can move the economics across break-even.** Each line changes one assumption over its declared range while retaining uncertainty in the others. This helps identify inputs to validate; it does not establish the value of a research project or an exact decision threshold.
+
+![Sensitivity analysis showing how launch cost, durability, margin, audience, maintenance and coverage affect expected net value](docs/screenshots/04-sensitivity.png)
+
+**Check whether collecting more primary-outcome data is worth its cost.** The value-of-information view compares improved modeled choices with the cost of sampling and waiting. More primary data cannot resolve missing safety evidence, engineering costs or durability assumptions.
+
+![Value-of-information inputs and outputs comparing better-informed choices with study and waiting costs](docs/screenshots/04-value-of-information.png)
 
 #### 05 · Challenge the decision with AI
 
@@ -106,10 +130,15 @@ Request a Strategic Review grounded in computed experiment results and the activ
 
 ![AI Strategic Review entry point with optional company context and calculated starting point](docs/screenshots/05-ai-review.png)
 
+**See what a generated review looks like.** In this captured response, the AI explains why keeping control is preferred under the active assumptions, challenges implementation cost and benefit durability, explores calculated alternatives and suggests a concrete fact to validate next.
+
+![Example AI Strategic Review discussing implementation costs, durability, margin, months of impact and a proposed validation step](docs/screenshots/05-ai-response.png)
+
+This is one illustrative generated response, not a fixed answer or an authoritative threshold table. AI wording can vary; use the computed comparisons and recorded scenario to verify numerical claims. The review and brief shown here are separate captured states, not a synchronized decision record.
+
 Example questions connect interpretation, business constraints and controlled scenario exploration.
 
 ![Suggested AI questions and conversation controls](docs/screenshots/05-ai-questions.png)
-
 
 #### 06 · Record a decision you can revisit
 
@@ -117,6 +146,9 @@ Bring the result, uncertainty, safety checks and modeled economics into a readab
 
 ![Decision Brief showing the choice, its rationale and the evidence that matters](docs/screenshots/06-decision-brief.png)
 
+**Record what would change the choice.** The brief also preserves the assumptions that could switch the preferred action: durability, contribution per extra outcome, eligible audience and months of impact. It reports tested settings and uncertainty rather than treating a tested range endpoint as an exact cutoff. A longer comparison period is not always better.
+
+![Decision Brief continuation listing assumptions and tested business scenarios that would change the preferred action](docs/screenshots/06-what-changes-the-choice.png)
 
 **Reading the example:** a positive estimate can coexist with an inconclusive conventional test; a model-conditioned probability of benefit is not a probability of financial success. Guardrails, corrected subgroup comparisons and modeled economics answer different questions.
 
